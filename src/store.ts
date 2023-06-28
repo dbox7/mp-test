@@ -2,33 +2,17 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 import { createContext } from "react";
 import sample from "./data.json";
+import { ILocation, IEnv, IServer } from "./types";
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export interface Location {
-  locationID: number;
-  name: string;
-}
-
-export interface Env {
-  envID: number;
-  name: string;
-}
-
-export interface Server {
-  serverID: number;
-  name: string;
-  locationID: number;
-  envID: number;
-}
-
 export class Store {
   isLoaded = false;
-  locations: Location[] = [];
-  envs: Env[] = [];
-  servers: Server[] = [];
+  locations: ILocation[] = [];
+  envs: IEnv[] = [];
+  servers: IServer[] = [];
 
   fetchData = async () => {
     await sleep(3000);
@@ -47,3 +31,4 @@ export class Store {
 
 export const store = new Store();
 export const storeContext = createContext(store);
+

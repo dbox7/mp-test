@@ -1,6 +1,6 @@
 import React from 'react';
 import './optionsList.css';
-import { Location, Env } from '../../store';
+import { ILocation, IEnv } from '../../types';
 
 // interface ILocations {
 //   locationID: number;
@@ -13,7 +13,7 @@ import { Location, Env } from '../../store';
 // }
 
 interface option {
-  options: Partial<Location & Env>[];
+  options: Partial<ILocation & IEnv>[];
 }
 
 const OptionsList: React.FC<option> = ( {options} ) => {

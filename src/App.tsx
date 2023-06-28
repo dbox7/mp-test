@@ -1,6 +1,6 @@
 import React from 'react';
-import Location from './components/location/Location';
 import './style.css'
+import Card from './components/card/Card';
 
 const data = [
   {
@@ -18,7 +18,7 @@ function App() {
     <div>
       <h1>Тестовые локации</h1>
       <hr></hr>
-      <Location />
+      <Card />
     </div>
   );
 }

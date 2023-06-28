@@ -1,6 +1,6 @@
 import React from 'react';
-import OptionsList from '../select/OptionsList';
-import './location.css'
+import OptionsList from '../Select/OptionsList';
+import './card.css'
 
 const data = [
   {
@@ -13,7 +13,7 @@ const data = [
   }
 ]
 
-const Location = () => {
+const Card = ({  }) => {
   return (
     <article className='card'>
       <section className="header">
@@ -45,4 +45,4 @@ const Location = () => {
   );
 }
 
-export default Location;
+export default Card;
