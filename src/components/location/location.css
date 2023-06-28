@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+}
+
+.location,
+.env,
+.servers,
+.prompt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 30%;
+}
+
+.prompt,
+.prompt input {
+  width: 100%;
+}
+
+.prompt input {
+  height: 30px;
+}
+
