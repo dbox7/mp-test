@@ -1,24 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css'
-import Card from './components/card/Card';
-
-const data = [
-  {
-    envID: 1,
-    name: 'a',
-  },
-  {
-    envID: 2,
-    name: 'b',
-  }
-]
+import TestLocationsList from './components/TestLocationList/TestLocationList';
+import { store } from './store';
 
 function App() {
+  store.fetchData();
   return (
     <div>
       <h1>Тестовые локации</h1>
-      <hr></hr>
-      <Card />
+      <hr/>
+      <TestLocationsList />
     </div>
   );
 }

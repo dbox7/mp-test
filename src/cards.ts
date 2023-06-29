@@ -3,5 +3,5 @@
 
 
 export class Cards {
-  const cards = [];
+  cards = [];
 }

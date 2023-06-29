@@ -16,5 +16,7 @@ export interface IServer {
 }
 
 export interface ICard {
-
+  locationID: number,
+  envID: number,
+  hint: string
 }
