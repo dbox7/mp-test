@@ -25,6 +25,7 @@ export interface ICard {
 }
 
 export interface cardOptions {
+  idx: number,
   location: ICard,
   handle: any,
   updateLocationsList: any

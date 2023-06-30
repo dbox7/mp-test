@@ -27,7 +27,8 @@ const TestLocationsList:FC = observer(() => {
       <>
         {locationsList.map((location: ICard, index: number) => (
           <Card 
-            key={`location-${index}`} 
+            key={`location-${index}`}
+            idx={index} 
             location={location} 
             handle={handleDeleteClick}
             updateLocationsList={updateLocationsList}

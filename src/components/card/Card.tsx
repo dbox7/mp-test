@@ -4,7 +4,7 @@ import { Store, storeContext } from '../../store';
 import { IEnv, cardOptions } from '../../types';
 import './card.css'
 
-const Card: FC<cardOptions> = ({location, handle, updateLocationsList}) => {
+const Card: FC<cardOptions> = ({idx, location, handle, updateLocationsList}) => {
   
   const store = useContext<Store>(storeContext);
 
@@ -26,7 +26,8 @@ const Card: FC<cardOptions> = ({location, handle, updateLocationsList}) => {
     <article className='card'>
       <section className="header">
         <div className="logo">
-          <h2>Тестовая локация</h2>
+          <i className="fa-solid fa-vial fa-xl"></i>
+          <h2>Тестовая локация {idx + 1}</h2>
         </div>
         <button  
           className='closeButton'

@@ -27,6 +27,12 @@
   width: 100%;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .location,
 .env,
 .servers,
