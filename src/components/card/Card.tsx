@@ -29,8 +29,7 @@ const Card: FC<cardOptions> = ({idx, location, handle, updateLocationsList}) => 
           <i className="fa-solid fa-vial fa-xl"></i>
           <h2>Тестовая локация {idx + 1}</h2>
         </div>
-        <button  
-          className='closeButton'
+        <button className='closeButton'
           onClick={() => {
           handle(location);
         }}><i className="fa-solid fa-trash-can fa-lg" style={{color: '#cb0606'}}></i></button>
