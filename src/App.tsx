@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import './style.css'
 import TestLocationsList from './components/TestLocationList/TestLocationList';
 import { store } from './store';

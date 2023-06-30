@@ -1,23 +1,19 @@
 import React from 'react';
 import './optionsList.css';
-import { ILocation, IEnv, ICard } from '../../types';
-import { observer } from 'mobx-react-lite';
-interface option {
-  options: Partial<ILocation & IEnv>[],
-  //handler?: React.ChangeEventHandler<HTMLSelectElement>;
-  location: ICard
-}
+import { option } from '../../types';
 
-const OptionsList: React.FC<option> = ( {options, location} ) => {
-  console.log()
+const OptionsList: React.FC<option> = ( {options, location, handle, filter} ) => {
   const id = Object.hasOwn(options[0], 'envID') ? 'envID' : 'locationID';
   return (
     <select 
-      className='optionList' 
+      className='optionList'
+      value={location[id]} 
       onChange={(event) => {
-        console.log(location[id]);
-        location[id] = Number(event.target.value);
-        console.log(location[id]);
+        console.log('here');
+        handle(location, id, Number(event.target.value))
+        if (filter) {
+          filter(location.locationID);
+        }
       }}
     >
       {options.map(item => 

@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import React, { createContext } from "react";
+import { createContext } from "react";
 import sample from "./data.json";
 import { ILocation, IEnv, IServer, ICard } from "./types";
 
@@ -12,7 +12,6 @@ export class Store {
   locations: ILocation[] = [];
   envs: IEnv[] = [];
   servers: IServer[] = [];
-  locationList: ICard[] = [];
 
   fetchData = async () => {
     await sleep(3000);
@@ -24,21 +23,22 @@ export class Store {
     });
   };
 
+  filter = (id: number) => {
+    let filteredEnvs: any[] = [];
+    const filteredServers = this.servers.filter(server => {
+      if (server.locationID === id) {
+        filteredEnvs.push(server.envID)
+        return server;
+      }
+    });
+    filteredEnvs = this.envs.filter(env => filteredEnvs.includes(env.envID))
+    return [filteredEnvs, filteredServers]
+  }
+
   constructor() {
     console.log('start')
     makeAutoObservable(this);
-    //this.fetchData();
   }
-
-  
-
-  // filterEnvs = (location: string) => {
-  //   return this.envs.filter(item => {
-  //     this.servers.forEach(server => {
-        
-  //     })
-  //   })
-  // }
 }
 
 export const store = new Store();

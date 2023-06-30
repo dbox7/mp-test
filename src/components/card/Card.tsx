@@ -1,35 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import OptionsList from '../Select/OptionsList';
 import './card.css'
 import { storeContext } from '../../store';
-import { observer } from 'mobx-react-lite';
-import { ICard } from '../../types';
+import { cardOptions } from '../../types';
 
-interface cardOptions {
-  location: ICard,
-  handle: any,
-}
-
-const Card: React.FC<cardOptions> = observer(({location, handle}) => {
-  const store = useContext(storeContext);
-  console.log('loc', location);
+const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) => {
   
-  const [locationID, setLocationID] = useState(1);
-  const [envID, setEnvID] = useState(1);
-  const [hint, setHint] = useState(location.hint);
-  console.log('hint', hint);
+  const store = useContext(storeContext);
 
-  // const handleChangeLocation = (event:React.ChangeEvent<HTMLSelectElement>):void => {
-  //   console.log('handler');
-    
-  //   const filteredEnvs:number[] = [];
-  //   const filteredServers = store.servers.filter(server => {
-  //     if (server.locationID === Number(event.target.value)) {
-  //       filteredEnvs.push(server.envID);
-  //     }
-  //   });
-  //   setEnvs([...envs].filter(env => filteredEnvs.includes(env.envID)))
-  // }
+  const [filteredServers, setFilteredServers] = useState(store.servers.map(server => server.name).join(','));
+  const [filteredEnv, setFilteredEnv] = useState(store.envs);
+
+  function filter(id:number) {
+    const [newEnvs, newServers] = store.filter(id);
+    setFilteredEnv(newEnvs);
+    setFilteredServers(newServers.map(server => server.name).join(','));
+    location.envID = newEnvs[0].envID;
+  }
+
+  useEffect(() => {
+    filter(location.locationID);
+  },[location.locationID])
 
   return (
     <article className='card'>
@@ -48,29 +39,31 @@ const Card: React.FC<cardOptions> = observer(({location, handle}) => {
           <OptionsList 
             options={store.locations}
             location={location}
-            // handler={handleChangeLocation}
+            handle={updateLocationsList}
+            filter={filter}
           />
         </div>
         <div className="env">
           Среда
           <OptionsList 
-            options={store.envs}
+            options={filteredEnv}
             location={location}
+            handle={updateLocationsList}
           />
         </div>
         <div className="servers">
           Серверы
+          <span>{filteredServers}</span>
         </div>
         <div className="prompt">
           Подсказка
-          <input type="text" value={hint} onChange={(event) => {
-            location.hint = event.target.value;
-            setHint(event.target.value);
+          <input type="text" value={location.hint} onChange={(event) => {
+            updateLocationsList(location, 'hint', event.target.value)
           }}/>
         </div>
       </section>
     </article>
   );
-});
+};
 
 export default Card;

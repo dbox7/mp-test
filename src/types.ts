@@ -1,11 +1,13 @@
 export interface ILocation {
   locationID: number;
   name: string;
+  [propName: string]: any;
 }
 
 export interface IEnv {
   envID: number;
   name: string;
+  [propName: string]: any;
 }
 
 export interface IServer {
@@ -18,5 +20,19 @@ export interface IServer {
 export interface ICard {
   locationID: number,
   envID: number,
-  hint: string
+  hint: string,
+  [propName: string]: any;
+}
+
+export interface cardOptions {
+  location: ICard,
+  handle: any,
+  updateLocationsList: any
+}
+
+export interface option {
+  options: Partial<ILocation & IEnv>[],
+  location: ICard,
+  handle: Function,
+  filter?: Function,
 }
