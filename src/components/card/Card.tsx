@@ -14,7 +14,7 @@ const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) =>
   function filter(id:number) {
     const [newEnvs, newServers] = store.filter(id);
     setFilteredEnv(newEnvs);
-    setFilteredServers(newServers.map(server => server.name).join(','));
+    setFilteredServers(newServers.map(server => server.name).join(', '));
     location.envID = newEnvs[0].envID;
   }
 
@@ -26,16 +26,18 @@ const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) =>
     <article className='card'>
       <section className="header">
         <div className="logo">
-          <img></img>
-          <h2>Тестовая локация {location.envID}</h2>
+          <h2>Тестовая локация</h2>
         </div>
-        <button onClick={() => {
+        <button  
+          className='closeButton'
+          onClick={() => {
           handle(location);
-        }}></button>
+        }}><i className="fa-solid fa-trash-can fa-lg" style={{color: '#cb0606'}}></i></button>
       </section>
       <section className="main">
         <div className="location">
-          Локация
+          <strong className='desc'>Локация</strong>
+          
           <OptionsList 
             options={store.locations}
             location={location}
@@ -44,7 +46,8 @@ const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) =>
           />
         </div>
         <div className="env">
-          Среда
+          <strong >Среда</strong>
+          
           <OptionsList 
             options={filteredEnv}
             location={location}
@@ -52,11 +55,11 @@ const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) =>
           />
         </div>
         <div className="servers">
-          Серверы
+          <strong >Серверы</strong>
           <span>{filteredServers}</span>
         </div>
         <div className="prompt">
-          Подсказка
+          <strong>Подсказка</strong>
           <input type="text" value={location.hint} onChange={(event) => {
             updateLocationsList(location, 'hint', event.target.value)
           }}/>

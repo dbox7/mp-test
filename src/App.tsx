@@ -5,11 +5,11 @@ import { store } from './store';
 function App() {
   store.fetchData();
   return (
-    <div>
-      <h1>Тестовые локации</h1>
+    <>
+      <h1 className='title'>Тестовые локации</h1>
       <hr/>
       <TestLocationsList />
-    </div>
+    </>
   );
 }
 

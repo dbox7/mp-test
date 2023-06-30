@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext } from "react";
 import sample from "./data.json";
-import { ILocation, IEnv, IServer, ICard } from "./types";
+import { ILocation, IEnv, IServer } from "./types";
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -36,7 +36,6 @@ export class Store {
   }
 
   constructor() {
-    console.log('start')
     makeAutoObservable(this);
   }
 }

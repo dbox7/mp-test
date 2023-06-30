@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { storeContext } from "../../store";
 import Card from "../card/Card";
 import { ICard } from "../../types";
+import './testLocationList.css'
 
 const TestLocationsList = observer(() => {
   const store = useContext(storeContext);
@@ -33,25 +34,31 @@ const TestLocationsList = observer(() => {
           />
         ))}
 
-        <button
-          onClick={() => {
-            setLocationsList([...locationsList, { locationID: 1, envID: 1, hint: ''}]);
-          }}
-        >
-          Добавить тестовую локацию
-        </button>
+        <div className="buttonsBlock">
+          <button
+            className="button"
+            onClick={() => {
+              setLocationsList([...locationsList, { locationID: 1, envID: 1, hint: ''}]);
+            }}
+          >
+            <i className="fa-solid fa-plus"></i> 
+            Добавить тестовую локацию
+          </button>
 
-        <button
-          onClick={() => {
-            console.log(locationsList);
-          }}
-        >
-          Вывести результат в консоль
-        </button>
+          <button
+            className="button"
+            onClick={() => {
+              console.log(locationsList);
+            }}
+          >
+            <i className="fa-solid fa-terminal"></i>
+            Вывести результат в консоль
+          </button>
+        </div>
       </>
     );
   } else {
-    return <h1>Идет загрузка локаций...</h1>
+    return <h1 className="loading">Идет загрузка локаций...</h1>
   }
 });
 

@@ -9,7 +9,6 @@ const OptionsList: React.FC<option> = ( {options, location, handle, filter} ) =>
       className='optionList'
       value={location[id]} 
       onChange={(event) => {
-        console.log('here');
         handle(location, id, Number(event.target.value))
         if (filter) {
           filter(location.locationID);

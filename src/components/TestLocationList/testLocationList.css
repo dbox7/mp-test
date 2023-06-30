@@ -1,0 +1,25 @@
+.buttonsBlock {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: 30px auto;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid blue;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: rgba(0, 0, 255, 0.1);
+}
+
+.loading {
+  text-align: center;
+}
