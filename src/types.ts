@@ -36,3 +36,5 @@ export interface option {
   handle: Function,
   filter?: Function,
 }
+
+export type updateValue = string | number

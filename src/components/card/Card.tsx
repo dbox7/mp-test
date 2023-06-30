@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useContext, useEffect, useState } from 'react';
 import OptionsList from '../Select/OptionsList';
+import { Store, storeContext } from '../../store';
+import { IEnv, cardOptions } from '../../types';
 import './card.css'
-import { storeContext } from '../../store';
-import { cardOptions } from '../../types';
 
-const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) => {
+const Card: FC<cardOptions> = ({location, handle, updateLocationsList}) => {
   
-  const store = useContext(storeContext);
+  const store = useContext<Store>(storeContext);
 
-  const [filteredServers, setFilteredServers] = useState(store.servers.map(server => server.name).join(','));
-  const [filteredEnv, setFilteredEnv] = useState(store.envs);
+  const [filteredServers, setFilteredServers] = useState<string>(store.servers.map(server => server.name).join(','));
+  const [filteredEnv, setFilteredEnv] = useState<IEnv[]>(store.envs);
 
-  function filter(id:number) {
+  function filter(id: number):void {
     const [newEnvs, newServers] = store.filter(id);
     setFilteredEnv(newEnvs);
     setFilteredServers(newServers.map(server => server.name).join(', '));
@@ -60,7 +60,7 @@ const Card: React.FC<cardOptions> = ({location, handle, updateLocationsList}) =>
         </div>
         <div className="prompt">
           <strong>Подсказка</strong>
-          <input type="text" value={location.hint} onChange={(event) => {
+          <input type="text" value={location.hint} onChange={(event: ChangeEvent<HTMLInputElement>) => {
             updateLocationsList(location, 'hint', event.target.value)
           }}/>
         </div>

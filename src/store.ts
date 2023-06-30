@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext } from "react";
-import sample from "./data.json";
 import { ILocation, IEnv, IServer } from "./types";
+import sample from "./data.json";
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -24,14 +24,14 @@ export class Store {
   };
 
   filter = (id: number) => {
-    let filteredEnvs: any[] = [];
-    const filteredServers = this.servers.filter(server => {
+    const temp: number[] = [];
+    const filteredServers:IServer[] = this.servers.filter((server:IServer) => {
       if (server.locationID === id) {
-        filteredEnvs.push(server.envID)
+        temp.push(server.envID)
         return server;
       }
     });
-    filteredEnvs = this.envs.filter(env => filteredEnvs.includes(env.envID))
+    const filteredEnvs: IEnv[] = this.envs.filter((env: IEnv) => temp.includes(env.envID))
     return [filteredEnvs, filteredServers]
   }
 

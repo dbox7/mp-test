@@ -1,6 +1,6 @@
-import './style.css'
-import TestLocationsList from './components/TestLocationList/TestLocationList';
 import { store } from './store';
+import TestLocationsList from './components/TestLocationList/TestLocationList';
+import './style.css'
 
 function App() {
   store.fetchData();

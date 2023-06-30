@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
+import { IEnv, ILocation, option } from '../../types';
 import './optionsList.css';
-import { option } from '../../types';
 
-const OptionsList: React.FC<option> = ( {options, location, handle, filter} ) => {
+const OptionsList: FC<option> = ( {options, location, handle, filter} ) => {
   const id = Object.hasOwn(options[0], 'envID') ? 'envID' : 'locationID';
   return (
     <select 
@@ -15,7 +15,7 @@ const OptionsList: React.FC<option> = ( {options, location, handle, filter} ) =>
         }
       }}
     >
-      {options.map(item => 
+      {options.map((item: Partial<ILocation & IEnv>) => 
         <option key={item[id]} value={item[id]}>
           {item.name}
         </option>

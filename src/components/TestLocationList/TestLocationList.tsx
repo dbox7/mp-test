@@ -1,19 +1,19 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useState } from "react";
-import { storeContext } from "../../store";
+import { FC, useContext, useState } from "react";
+import { Store, storeContext } from "../../store";
+import { ICard, updateValue } from "../../types";
 import Card from "../card/Card";
-import { ICard } from "../../types";
 import './testLocationList.css'
 
-const TestLocationsList = observer(() => {
-  const store = useContext(storeContext);
+const TestLocationsList:FC = observer(() => {
+  const store = useContext<Store>(storeContext);
   const [locationsList, setLocationsList] = useState<ICard[]>([{locationID: 1, envID: 1, hint: ''}]);
 
-  function handleDeleteClick(location:ICard):any {
+  function handleDeleteClick(location:ICard):void {
     setLocationsList(locationsList.filter(item => item !== location)) 
   }
 
-  function updateLocationsList(location: ICard, prop: string, value: any):void {
+  function updateLocationsList(location: ICard, prop: string, value: updateValue):void {
     setLocationsList(locationsList.map(item => {
       if (item === location) {
         item[prop] = value;
@@ -25,7 +25,7 @@ const TestLocationsList = observer(() => {
   if (store.isLoaded) {
     return (
       <>
-        {locationsList.map((location, index) => (
+        {locationsList.map((location: ICard, index: number) => (
           <Card 
             key={`location-${index}`} 
             location={location} 
@@ -35,8 +35,7 @@ const TestLocationsList = observer(() => {
         ))}
 
         <div className="buttonsBlock">
-          <button
-            className="button"
+          <button className="button"
             onClick={() => {
               setLocationsList([...locationsList, { locationID: 1, envID: 1, hint: ''}]);
             }}
@@ -45,8 +44,7 @@ const TestLocationsList = observer(() => {
             Добавить тестовую локацию
           </button>
 
-          <button
-            className="button"
+          <button className="button"
             onClick={() => {
               console.log(locationsList);
             }}
