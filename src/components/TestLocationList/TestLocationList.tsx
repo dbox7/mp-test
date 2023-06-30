@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { FC, useContext, useState } from "react";
 import { Store, storeContext } from "../../store";
 import { ICard, updateValue } from "../../types";
-import Card from "../card/Card";
+import Card from "../Card/Card";
 import './testLocationList.css'
 
 const TestLocationsList:FC = observer(() => {
