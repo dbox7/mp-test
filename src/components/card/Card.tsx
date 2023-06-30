@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useContext, useEffect, useState } from 'react';
-import OptionsList from '../Select/OptionsList';
+import OptionsList from '../Select/Select';
 import { Store, storeContext } from '../../store';
 import { IEnv, cardOptions } from '../../types';
 import './card.css'

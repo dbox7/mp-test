@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IEnv, ILocation, option } from '../../types';
-import './optionsList.css';
+import './select.css';
 
 const OptionsList: FC<option> = ( {options, location, handle, filter} ) => {
   const id = Object.hasOwn(options[0], 'envID') ? 'envID' : 'locationID';
