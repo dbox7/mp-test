@@ -9,10 +9,8 @@ const OptionsList: FC<option> = ( {options, location, handle, filter} ) => {
       className='optionList'
       value={location[id]} 
       onChange={(event) => {
-        handle(location, id, Number(event.target.value))
-        if (filter) {
-          filter(location.locationID);
-        }
+        handle(location, id, Number(event.target.value));
+        filter(location.locationID, location.envID);
       }}
     >
       {options.map((item: Partial<ILocation & IEnv>) => 

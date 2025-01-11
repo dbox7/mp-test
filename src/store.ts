@@ -23,12 +23,14 @@ export class Store {
     });
   };
 
-  filter = (id: number) => {
+  filter = (locId: number, envId: number) => {
     const temp: number[] = [];
     const filteredServers:IServer[] = this.servers.filter((server:IServer) => {
-      if (server.locationID === id) {
+      if (server.locationID === locId) {
         temp.push(server.envID)
-        return server;
+        if (server.envID === envId) {
+          return server;
+        }
       }
     });
     const filteredEnvs: IEnv[] = this.envs.filter((env: IEnv) => temp.includes(env.envID))

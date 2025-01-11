@@ -35,7 +35,7 @@ export interface option {
   options: Partial<ILocation & IEnv>[],
   location: ICard,
   handle: Function,
-  filter?: Function,
+  filter: Function,
 }
 
 export type updateValue = string | number

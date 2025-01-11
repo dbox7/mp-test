@@ -11,16 +11,16 @@ const Card: FC<cardOptions> = ({idx, location, handle, updateLocationsList}) => 
   const [filteredServers, setFilteredServers] = useState<string>(store.servers.map(server => server.name).join(','));
   const [filteredEnv, setFilteredEnv] = useState<IEnv[]>(store.envs);
 
-  function filter(id: number):void {
-    const [newEnvs, newServers] = store.filter(id);
+  function filter(locId: number, envId: number, flag?: boolean):void {
+    const [newEnvs, newServers] = store.filter(locId, envId);
     setFilteredEnv(newEnvs);
     setFilteredServers(newServers.map(server => server.name).join(', '));
-    location.envID = newEnvs[0].envID;
+    //location.envId = newEnvs[0].envID;    
   }
 
   useEffect(() => {
-    filter(location.locationID);
-  },[location.locationID])
+    filter(location.locationID, location.envID);
+  },[location.locationID, handle])
 
   return (
     <article className='card'>
@@ -52,6 +52,7 @@ const Card: FC<cardOptions> = ({idx, location, handle, updateLocationsList}) => 
             options={filteredEnv}
             location={location}
             handle={updateLocationsList}
+            filter={filter}
           />
         </div>
         <div className="servers">
